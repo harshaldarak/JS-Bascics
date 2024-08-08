@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Ball Animation</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .ball {
+        position: absolute;
+        top: 50%; /* vertically centered */
+        left: -50px; /* initially outside the screen on the left */
+      }
+    </style>
+  </head>
+  <body>
+    <img src="cricket_ball_stock_image.jpg" alt="Cricket Ball" class="ball" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const ball = document.querySelector(".ball");
+        const screenWidth = window.innerWidth;
+
+        // Animation to move the ball horizontally
+        function moveBall() {
+          let position = -50;
+          const moveInterval = setInterval(() => {
+            position += 5;
+            ball.style.left = position + "px";
+            if (position >= screenWidth) {
+              // Reset position when ball reaches right edge of screen
+              clearInterval(moveInterval);
+              ball.style.left = "-50px"; // Reset position to the left
+              setTimeout(moveBall, 300); // Wait for 1 second and then move the ball again
+            }
+          }, 20);
+        }
+
+        // Start the animation when the page loads
+        moveBall();
+      });
+    </script>
+  </body>
+</html>
